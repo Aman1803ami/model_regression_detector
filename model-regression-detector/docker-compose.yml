@@ -1,0 +1,11 @@
+services:
+  eval-runner:
+    build: .
+    container_name: model-regression-detector
+    env_file:
+      - .env
+    volumes:
+      - ./reports:/app/reports
+      - ./data:/app/data
+    # Override default CMD to run with Slack alerts
+    command: ["--alert", "--report-dir", "/app/reports"]

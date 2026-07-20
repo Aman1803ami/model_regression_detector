@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eval Report: v1 | PASS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #22c55e;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .header .meta {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+        .status-badge {
+            display: inline-block;
+            background: #22c55e22;
+            color: #22c55e;
+            border: 1px solid #22c55e;
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+        .scorecard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .metric-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+        .metric-delta {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .delta-positive { color: #22c55e; }
+        .delta-negative { color: #ef4444; }
+        .delta-neutral { color: #94a3b8; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        th {
+            text-align: left;
+            padding: 0.75rem;
+            background: #0f172a;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #334155;
+        }
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+        tr:hover td {
+            background: #334155;
+        }
+        .category-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #334155;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .pass { color: #22c55e; }
+        .fail { color: #ef4444; }
+        .warn { color: #eab308; }
+        .diff-old { background: #7f1d1d33; color: #fca5a5; }
+        .diff-new { background: #14532d33; color: #86efac; }
+        .alert-box {
+            background: #7f1d1d22;
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .trend-chart {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+        .collapsible::after {
+            content: ' ▸';
+            font-size: 0.875rem;
+        }
+        .collapsible.open::after {
+            content: ' ▾';
+        }
+        .collapsible-content {
+            display: none;
+        }
+        .collapsible-content.show {
+            display: block;
+        }
+        .email-preview {
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            padding: 0.5rem;
+            background: #0f172a;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+    <div class="header">
+        <div class="status-badge">✅ PASS</div>
+        <h1>Model Regression Report — v1</h1>
+        <div class="meta">
+            Run ID: a6bf5a1aab4f &nbsp;|&nbsp;
+            Model: gemini-3.1-flash-lite &nbsp;|&nbsp;
+            Prompt: v1 &nbsp;|&nbsp;
+            Timestamp: 2026-07-20 06:31:08 UTC &nbsp;|&nbsp;
+            Cases: 80
+        </div>
+    </div>
+        
+    <div class="card">
+        <h2>📊 Scorecard</h2>
+        <div class="scorecard-grid">
+            <div class="metric-card">
+                <div class="metric-value">92.5%</div>
+                <div class="metric-label">Accuracy</div>
+                
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3.41</div>
+                <div class="metric-label">Avg Summary Score (1-5)</div>
+                
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">1420ms</div>
+                <div class="metric-label">Avg Latency</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">56,214</div>
+                <div class="metric-label">Total Tokens</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">74/80</div>
+                <div class="metric-label">Cases Passed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-label">Errors</div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="card">
+        <h2>📂 Per-Category Breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Correct/Total</th>
+                    <th>Accuracy</th>
+                    <th>Avg Summary Score</th>
+                    <th>Avg Latency</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><strong>account</strong></td>
+            <td>16/21</td>
+            <td>
+                76.2%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 76.19047619047619%; background: #eab308;"></div>
+                </div>
+            </td>
+            <td>3.38</td>
+            <td>789ms</td>
+        </tr>
+        <tr>
+            <td><strong>billing</strong></td>
+            <td>20/20</td>
+            <td>
+                100.0%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 100.0%; background: #22c55e;"></div>
+                </div>
+            </td>
+            <td>3.25</td>
+            <td>1192ms</td>
+        </tr>
+        <tr>
+            <td><strong>general</strong></td>
+            <td>16/17</td>
+            <td>
+                94.1%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 94.11764705882352%; background: #22c55e;"></div>
+                </div>
+            </td>
+            <td>3.29</td>
+            <td>816ms</td>
+        </tr>
+        <tr>
+            <td><strong>technical</strong></td>
+            <td>22/22</td>
+            <td>
+                100.0%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 100.0%; background: #22c55e;"></div>
+                </div>
+            </td>
+            <td>3.68</td>
+            <td>2695ms</td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+        
+        
+        
+        
+    <div class="card">
+        <h2 class="collapsible">📋 All Results (80 cases)</h2>
+        <div class="collapsible-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Predicted</th>
+                        <th>Summary Score</th>
+                        <th>Latency</th>
+                        <th>Difficulty</th>
+                        <th>Error</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>TC-001</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>734ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-002</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>777ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-003</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>756ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-004</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>706ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-005</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>5.0</td>
+            <td>733ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-006</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>779ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-007</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>783ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-008</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>715ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-009</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>648ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-010</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>750ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-011</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>5.0</td>
+            <td>754ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-012</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>765ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-013</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>777ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-014</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>855ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-015</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>844ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-016</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>743ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-017</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>761ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-018</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>757ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-019</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>8978ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-020</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>1226ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-021</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>837ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-022</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>5.0</td>
+            <td>1094ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-023</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>2782ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-024</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>1208ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-025</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>18674ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-026</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>806ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-027</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>829ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-028</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>5.0</td>
+            <td>21990ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-029</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>806ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-030</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>725ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-031</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>711ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-032</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>699ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-033</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>795ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-034</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>670ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-035</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>698ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-036</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>789ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-037</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>785ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-038</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>790ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-039</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>677ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-040</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>5.0</td>
+            <td>705ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-041</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>702ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-042</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>792ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-043</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>671ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-044</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>695ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-045</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>912ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-046</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>763ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-047</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>722ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-048</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>1416ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-049</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>792ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-050</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">technical</td>
+            <td>4.0</td>
+            <td>777ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-051</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>778ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-052</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>4.0</td>
+            <td>687ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-053</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>681ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-054</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>3.0</td>
+            <td>798ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-055</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">technical</td>
+            <td>4.0</td>
+            <td>688ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-056</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>781ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-057</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>780ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-058</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>778ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-059</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>2.0</td>
+            <td>676ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-060</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>882ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-061</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>2.0</td>
+            <td>905ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-062</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>778ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-063</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>781ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-064</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>780ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-065</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>806ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-066</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>788ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-067</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>771ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-068</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>794ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-069</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>2.0</td>
+            <td>881ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-070</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>689ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-071</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>782ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-072</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>1082ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-073</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>903ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-074</td>
+            <td><span class="fail">✗</span></td>
+            <td>general</td>
+            <td class="fail">billing</td>
+            <td>4.0</td>
+            <td>792ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-075</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>5.0</td>
+            <td>784ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-076</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>843ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-077</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">billing</td>
+            <td>2.0</td>
+            <td>800ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-078</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>782ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-079</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>2.0</td>
+            <td>1386ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-080</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>1.0</td>
+            <td>778ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.querySelectorAll('.collapsible').forEach(el => {
+            el.addEventListener('click', () => {
+                el.classList.toggle('open');
+                const content = el.nextElementSibling;
+                content.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

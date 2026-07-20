@@ -1,0 +1,647 @@
+{
+  "version": "v1",
+  "created_at": "2026-07-20T00:00:00Z",
+  "description": "80 hand-curated customer support emails across 4 categories with deliberate edge cases. All test cases are human-verified ground truth — none were LLM-generated.",
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "input_email": "Hi support, I noticed a charge of $29.99 on my credit card from your company but I cancelled my subscription two weeks ago. Can you look into this and process a refund? My account email is sarah@email.com.",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports being charged after cancelling their subscription and is requesting a refund.",
+      "difficulty": "easy",
+      "notes": "Straightforward billing refund request."
+    },
+    {
+      "id": "TC-002",
+      "input_email": "I upgraded from the Basic plan to the Pro plan yesterday but I'm still being charged the Basic rate. When will the new pricing take effect? I want to make sure I'm getting all the Pro features I'm paying for.",
+      "expected_category": "billing",
+      "expected_summary": "Customer inquires about when their plan upgrade pricing will take effect after upgrading from Basic to Pro.",
+      "difficulty": "easy",
+      "notes": "Plan upgrade billing inquiry."
+    },
+    {
+      "id": "TC-003",
+      "input_email": "Your invoice #INV-2026-4481 has an incorrect tax calculation. We're a tax-exempt organization (EIN: 12-3456789) and should not be charged sales tax. Please issue a corrected invoice and credit the $47.23 in tax back to our account.",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports incorrect tax charges on their invoice due to their tax-exempt status and requests a corrected invoice with a credit.",
+      "difficulty": "medium",
+      "notes": "Specific invoice correction with tax-exempt status — tests detail extraction."
+    },
+    {
+      "id": "TC-004",
+      "input_email": "Can you explain what the 'platform fee' line item is on my latest bill? I don't remember agreeing to any platform fee when I signed up. If this is a new charge that was added, I'd like to understand what it covers before my next billing cycle.",
+      "expected_category": "billing",
+      "expected_summary": "Customer questions an unfamiliar platform fee on their bill and wants clarification before the next billing cycle.",
+      "difficulty": "easy",
+      "notes": "Billing inquiry about unknown charges."
+    },
+    {
+      "id": "TC-005",
+      "input_email": "We need to update our payment method from the Visa ending in 4242 to a corporate Amex card. Also, can you switch our billing cycle from monthly to annual? We'd like to take advantage of the annual discount you advertised.",
+      "expected_category": "billing",
+      "expected_summary": "Customer requests to update their payment method and switch from monthly to annual billing to receive the annual discount.",
+      "difficulty": "easy",
+      "notes": "Multi-part billing update request."
+    },
+    {
+      "id": "TC-006",
+      "input_email": "I'm disputing the overage charges on last month's bill. We were told our plan includes 10,000 API calls per month, but we were charged for overages at 8,500 calls. I have the original sales email confirming our quota. How do I submit this for review?",
+      "expected_category": "billing",
+      "expected_summary": "Customer disputes overage charges claiming their API usage was below their plan's quota and wants to submit evidence for review.",
+      "difficulty": "medium",
+      "notes": "Billing dispute with evidence reference — tests understanding of dispute context."
+    },
+    {
+      "id": "TC-007",
+      "input_email": "Hi, quick question — if I add 3 more team members to our Business plan, will we be prorated for the rest of the month or charged the full per-seat price immediately? Budget is tight this quarter so timing matters.",
+      "expected_category": "billing",
+      "expected_summary": "Customer asks about proration policy when adding team members to their Business plan due to budget constraints.",
+      "difficulty": "easy",
+      "notes": "Straightforward pricing inquiry."
+    },
+    {
+      "id": "TC-008",
+      "input_email": "URGENT: We were charged $2,499 instead of the agreed $249/month for our Enterprise contract. This appears to be a decimal error. Our CFO is asking questions. Please escalate this immediately and reverse the incorrect charge. Reference: Contract #ENT-2026-089.",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports an urgent overcharge of 10x the contracted amount and demands immediate escalation and reversal.",
+      "difficulty": "medium",
+      "notes": "Urgent billing error with specific contract reference."
+    },
+    {
+      "id": "TC-009",
+      "input_email": "We're a nonprofit and wondering if you offer any discounted pricing. We have about 25 users and really love the product but our grant funding limits what we can spend on software tools. Is there a nonprofit program or educational discount we could apply for?",
+      "expected_category": "billing",
+      "expected_summary": "Customer inquires about nonprofit or educational discount programs for their 25-person organization.",
+      "difficulty": "easy",
+      "notes": "Pricing inquiry for special discount programs."
+    },
+    {
+      "id": "TC-010",
+      "input_email": "My annual subscription renews next week and I want to downgrade from Pro to Basic before that happens. If I downgrade now, will I lose access to Pro features immediately or will they remain until the renewal date? I don't want any surprises on my bill.",
+      "expected_category": "billing",
+      "expected_summary": "Customer wants to downgrade their plan before annual renewal and asks about the timing of feature access changes.",
+      "difficulty": "easy",
+      "notes": "Downgrade timing and billing cycle question."
+    },
+    {
+      "id": "TC-011",
+      "input_email": "For the past three months, our invoices have been sent to accounting@oldcompany.com but we merged with another firm. Please update the billing email to finance@newcorp.com. Also, our company name on the invoice should now read 'NewCorp Solutions LLC' for our records.",
+      "expected_category": "billing",
+      "expected_summary": "Customer requests updates to their billing email address and company name on invoices following a company merger.",
+      "difficulty": "medium",
+      "notes": "Could be confused with 'account' since it involves contact info, but the primary intent is invoice/billing updates."
+    },
+    {
+      "id": "TC-012",
+      "input_email": "I tried to pay my outstanding balance but your payment page keeps returning a 'transaction declined' error even though my card works fine everywhere else. I've tried two different cards and both fail. Can you check if there's an issue on your end?",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports payment processing failures with multiple cards and suspects a system-side issue.",
+      "difficulty": "medium",
+      "notes": "Billing + technical overlap — but primary intent is making a payment, so billing."
+    },
+    {
+      "id": "TC-013",
+      "input_email": "Per our conversation last Thursday with your sales rep Marcus, we agreed on a custom enterprise rate of $8.50 per user per month for a 3-year commitment. I haven't received the formal quote yet. Can you send that over so our procurement team can process the PO?",
+      "expected_category": "billing",
+      "expected_summary": "Customer follows up on an agreed custom enterprise pricing quote that hasn't been received yet for procurement processing.",
+      "difficulty": "easy",
+      "notes": "Enterprise pricing follow-up."
+    },
+    {
+      "id": "TC-014",
+      "input_email": "Hola, necesito ayuda con mi factura. Me cobraron dos veces este mes — $19.99 on March 1 and again on March 15. I only have one subscription. Please refund the duplicate. Gracias.",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports a duplicate charge in a bilingual email and requests a refund for the extra payment.",
+      "difficulty": "hard",
+      "notes": "Mixed Spanish/English email — tests language handling."
+    },
+    {
+      "id": "TC-015",
+      "input_email": "hiii so like i got charged?? for something i def did not buy lol. my bank shows $9.99 from u guys on june 5th but i thought i canceled ages ago??? can u plz check bc im broke rn thx",
+      "expected_category": "billing",
+      "expected_summary": "Customer reports an unexpected charge after believing they had previously cancelled and requests investigation.",
+      "difficulty": "hard",
+      "notes": "Informal writing style with slang, abbreviations, and no punctuation — tests robustness to casual tone."
+    },
+    {
+      "id": "TC-016",
+      "input_email": "Refund.",
+      "expected_category": "billing",
+      "expected_summary": "Customer requests a refund with no additional context provided.",
+      "difficulty": "hard",
+      "notes": "Extremely short email — tests handling of minimal input."
+    },
+    {
+      "id": "TC-017",
+      "input_email": "I want to cancel my subscription effective immediately. Don't charge me for next month. I also want a refund for the remaining days of this month since I won't be using the service. Please confirm in writing that my recurring payments have been stopped.",
+      "expected_category": "billing",
+      "expected_summary": "Customer demands immediate subscription cancellation with a prorated refund and written confirmation of payment cessation.",
+      "difficulty": "medium",
+      "notes": "Cancellation + refund + confirmation — multi-part billing request."
+    },
+    {
+      "id": "TC-018",
+      "input_email": "Our finance team needs a W-9 form from your company for our vendor records. Additionally, can you confirm your company's legal name and EIN for our tax filing purposes? We need this before we can process any further payments.",
+      "expected_category": "billing",
+      "expected_summary": "Customer requests W-9 tax documentation and company legal details for their vendor records and tax filing.",
+      "difficulty": "medium",
+      "notes": "Tax documentation request — billing adjacent."
+    },
+    {
+      "id": "TC-019",
+      "input_email": "We've been a customer for 4 years and spend over $50K annually. Frankly, the recent 15% price increase feels like a slap in the face given our loyalty. I'd like to discuss retention pricing or we'll need to evaluate competitors. Please have your account manager reach out.",
+      "expected_category": "billing",
+      "expected_summary": "Long-term high-value customer objects to a price increase and requests retention pricing negotiation.",
+      "difficulty": "medium",
+      "notes": "Retention/pricing negotiation — could be 'account' but the core issue is pricing."
+    },
+    {
+      "id": "TC-020",
+      "input_email": "Can you send me a detailed usage report for the last 6 months? I need to reconcile our internal records with your billing. Specifically, I need to see API calls per day, storage used, and how those map to the charges on each invoice.",
+      "expected_category": "billing",
+      "expected_summary": "Customer requests a detailed 6-month usage report to reconcile with billing charges.",
+      "difficulty": "easy",
+      "notes": "Usage-to-billing reconciliation request."
+    },
+    {
+      "id": "TC-021",
+      "input_email": "The app crashes every time I try to open the dashboard on my iPhone 15 Pro running iOS 18.2. I get a brief flash of the loading screen and then it force-closes. I've tried reinstalling the app and restarting my phone but the issue persists.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports repeated app crashes when opening the dashboard on iPhone 15 Pro with iOS 18.2 despite reinstallation.",
+      "difficulty": "easy",
+      "notes": "Clear technical issue with device/OS details."
+    },
+    {
+      "id": "TC-022",
+      "input_email": "Since your update last Tuesday, the search function returns completely irrelevant results. For example, I searched for 'Q4 revenue report' and got results about onboarding checklists and holiday schedules. This was working perfectly before the update.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that the search function returns irrelevant results following a recent platform update.",
+      "difficulty": "easy",
+      "notes": "Post-update regression report."
+    },
+    {
+      "id": "TC-023",
+      "input_email": "I'm getting a 502 Bad Gateway error intermittently when trying to access the reporting module. It happens maybe 30% of the time, usually between 2-4 PM EST. The rest of the application works fine. Other team members in our office are seeing the same thing.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports intermittent 502 errors on the reporting module during specific hours affecting multiple team members.",
+      "difficulty": "easy",
+      "notes": "Intermittent server error with time pattern."
+    },
+    {
+      "id": "TC-024",
+      "input_email": "Your API endpoint POST /v2/documents/upload is returning a 413 Payload Too Large error for files that are only 8MB. Your documentation says the limit is 25MB. We've confirmed the Content-Length header is correct. Is there a mismatch between your docs and actual config?",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports API file upload failures below the documented size limit and suspects a configuration mismatch.",
+      "difficulty": "medium",
+      "notes": "Technical with specific API details — tests technical comprehension."
+    },
+    {
+      "id": "TC-025",
+      "input_email": "The real-time collaboration feature has about a 15-second delay for us. When one person types, the other person doesn't see the changes for 15 seconds. We're on a 500 Mbps connection so it's not our internet. This makes the feature unusable for our daily standups.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports 15-second latency in the real-time collaboration feature despite having fast internet, making it unusable for meetings.",
+      "difficulty": "easy",
+      "notes": "Performance/latency issue."
+    },
+    {
+      "id": "TC-026",
+      "input_email": "Whenever I try to export data as CSV, the file is missing the last column (Notes) and all date fields are formatted as Unix timestamps instead of human-readable dates. This broke our import process into our internal analytics tool.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports CSV exports missing the Notes column and formatting dates as Unix timestamps, breaking their analytics import pipeline.",
+      "difficulty": "medium",
+      "notes": "Data format/export bug with specific details."
+    },
+    {
+      "id": "TC-027",
+      "input_email": "I'm trying to integrate your webhook system with our Slack workspace but the webhooks are firing twice for every event. I checked our endpoint logs and each event ID appears exactly twice, about 200ms apart. Is this a known issue?",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports duplicate webhook firing for every event during their Slack integration setup.",
+      "difficulty": "medium",
+      "notes": "Integration/webhook technical issue."
+    },
+    {
+      "id": "TC-028",
+      "input_email": "After enabling two-factor authentication, I can no longer use the mobile app. The desktop version works fine with 2FA but the mobile app just shows 'Authentication Error' after I enter the code from my authenticator app. iPhone 14, app version 4.2.1.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that the mobile app fails authentication after enabling 2FA, while the desktop version works correctly.",
+      "difficulty": "medium",
+      "notes": "Could be 'account' since it involves 2FA, but the core issue is a mobile app bug."
+    },
+    {
+      "id": "TC-029",
+      "input_email": "the page takes forever to load like seriously its been 45 seconds just to see my dashboard. im using chrome and its fine on other sites. also the notification bell shows 99+ but when i click it nothing loads. pls fix asap our whole team is affected",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports extremely slow dashboard loading times and a non-functional notification system in Chrome affecting their team.",
+      "difficulty": "medium",
+      "notes": "Informal writing style, multiple technical issues in one email."
+    },
+    {
+      "id": "TC-030",
+      "input_email": "We noticed that the data in your analytics dashboard doesn't match what we're seeing in our own tracking system. Specifically, your dashboard shows 12,450 page views for last week while our Google Analytics shows 15,200 for the same period. The discrepancy has been growing over the past month.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports growing discrepancy between the platform's analytics data and their Google Analytics tracking for page views.",
+      "difficulty": "medium",
+      "notes": "Data accuracy issue — subtle technical bug."
+    },
+    {
+      "id": "TC-031",
+      "input_email": "Your SSL certificate for api.yourplatform.com appears to have expired yesterday. Our monitoring system is flagging it and our automated integrations are failing because they reject expired certificates. Can your infrastructure team renew it ASAP?",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports an expired SSL certificate on the API domain causing their automated integrations to fail.",
+      "difficulty": "easy",
+      "notes": "Infrastructure/security issue."
+    },
+    {
+      "id": "TC-032",
+      "input_email": "The drag-and-drop functionality in the Kanban board view doesn't work on Firefox 124. Cards can be picked up but when I drop them into another column, they snap back to their original position. Works fine on Chrome. This has been broken for at least two weeks.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that drag-and-drop in the Kanban board is broken on Firefox 124 while working correctly on Chrome.",
+      "difficulty": "easy",
+      "notes": "Browser-specific UI bug."
+    },
+    {
+      "id": "TC-033",
+      "input_email": "We set up a scheduled report to run daily at 8 AM PST but it's been running at 8 AM UTC instead. I confirmed our account timezone is set to America/Los_Angeles. The ad-hoc reports respect the timezone correctly — it's only the scheduled ones that are off.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that scheduled reports ignore the configured account timezone and run in UTC instead of PST.",
+      "difficulty": "medium",
+      "notes": "Timezone bug — common real-world issue."
+    },
+    {
+      "id": "TC-034",
+      "input_email": "CRITICAL: Our production deployment pipeline is failing because your npm package @yourcompany/sdk version 3.2.1 has a broken peer dependency on React 19. The error is 'Could not resolve dependency: peer react@\"^18.0.0\" from @yourcompany/sdk@3.2.1'. This is blocking our release.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports a critical dependency conflict in the SDK package blocking their production deployment pipeline.",
+      "difficulty": "medium",
+      "notes": "Developer-facing technical issue with dependency management."
+    },
+    {
+      "id": "TC-035",
+      "input_email": "I wrote a custom script using your Python SDK and I'm getting intermittent ConnectionResetError exceptions. It happens roughly every 50th API call. I've added retries with exponential backoff but I'm concerned about data consistency since I can't tell if the failed requests actually went through on your end or not.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports intermittent connection reset errors with the Python SDK and has concerns about data consistency from failed requests.",
+      "difficulty": "medium",
+      "notes": "Advanced technical issue — connection handling and idempotency concerns."
+    },
+    {
+      "id": "TC-036",
+      "input_email": "nothig works. the butons dont clik and the screan is al wierd. i cant do anythig help!!!",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that the interface is unresponsive with buttons not working and display issues.",
+      "difficulty": "hard",
+      "notes": "Heavy typos and vague description — tests robustness to noisy input."
+    },
+    {
+      "id": "TC-037",
+      "input_email": "Memory usage of your desktop application keeps climbing over time. After about 4 hours of use, it's consuming 3.2 GB of RAM which makes my entire system sluggish. Task Manager shows it's the main process, not a renderer. Restarting the app temporarily fixes it but it climbs right back up.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports a memory leak in the desktop application that consumes 3.2 GB RAM after 4 hours of use.",
+      "difficulty": "easy",
+      "notes": "Memory leak report with good diagnostic detail."
+    },
+    {
+      "id": "TC-038",
+      "input_email": "When I paste formatted text from Google Docs into your rich text editor, all the formatting is stripped out. Bold, italics, bullet lists, headers — everything becomes plain text. This is really annoying because I draft all my content in Docs first.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports that pasting formatted text from Google Docs into the rich text editor strips all formatting.",
+      "difficulty": "easy",
+      "notes": "Clipboard/formatting bug."
+    },
+    {
+      "id": "TC-039",
+      "input_email": "The auto-save feature seems to be silently failing. I worked on a document for 2 hours yesterday and when I came back today, all my changes were gone. The version history shows the last save was from the day before. I thought auto-save was supposed to work every 30 seconds?",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports data loss due to auto-save silently failing, losing 2 hours of work on a document.",
+      "difficulty": "easy",
+      "notes": "Data loss from silent failure — high severity bug."
+    },
+    {
+      "id": "TC-040",
+      "input_email": "Is there a way to increase the API rate limit for our staging environment? We're running load tests and hitting the 100 req/min limit. We don't want to run these tests against production. Can you temporarily bump our staging key to 1000 req/min for the next two weeks?",
+      "expected_category": "technical",
+      "expected_summary": "Customer requests a temporary API rate limit increase for their staging environment to support load testing.",
+      "difficulty": "medium",
+      "notes": "Rate limit request — could be billing but primary intent is technical enablement."
+    },
+    {
+      "id": "TC-041",
+      "input_email": "I forgot my password and the reset link I received expired before I could use it. Can you send another one? My registered email is mike.johnson@company.com. I've been locked out since yesterday morning.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests a new password reset link after the previous one expired, leaving them locked out.",
+      "difficulty": "easy",
+      "notes": "Standard password reset request."
+    },
+    {
+      "id": "TC-042",
+      "input_email": "I need to transfer ownership of our organization account from my profile (cto@startup.com) to our new VP of Engineering (vpe@startup.com). I'm leaving the company at the end of the month and we need to make sure there's continuity.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests transfer of organization account ownership to a new VP of Engineering before their departure.",
+      "difficulty": "easy",
+      "notes": "Account ownership transfer."
+    },
+    {
+      "id": "TC-043",
+      "input_email": "I'm getting a 'Your account has been suspended' message when I try to log in but I don't know why. I haven't violated any terms of service that I'm aware of. Can you explain why my account was suspended and what I need to do to get it reactivated?",
+      "expected_category": "account",
+      "expected_summary": "Customer reports unexpected account suspension with no explanation and requests clarification and reactivation.",
+      "difficulty": "easy",
+      "notes": "Account suspension inquiry."
+    },
+    {
+      "id": "TC-044",
+      "input_email": "Please delete my account and all associated data immediately. I no longer use your service. Under GDPR Article 17, I'm exercising my right to erasure. Please confirm deletion within 30 days as required by law. My account email is user@eu-company.de.",
+      "expected_category": "account",
+      "expected_summary": "Customer exercises their GDPR right to erasure requesting complete account and data deletion with legal compliance confirmation.",
+      "difficulty": "medium",
+      "notes": "GDPR deletion request — legal/compliance aspect."
+    },
+    {
+      "id": "TC-045",
+      "input_email": "Our team has grown and I need to set up SSO (SAML 2.0) for our organization. We use Okta as our identity provider. Can you walk me through the configuration? I'll need our SAML metadata URL, entity ID, and ACS URL from your side.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests guidance on configuring SAML 2.0 SSO integration with their Okta identity provider.",
+      "difficulty": "medium",
+      "notes": "SSO setup — enterprise account management."
+    },
+    {
+      "id": "TC-046",
+      "input_email": "I recently changed my name legally and need to update it across my account. My old name was Michael Smith and my new legal name is Michael Chen. Please update my display name, profile, and any public-facing areas. I can provide legal documentation if needed.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests a legal name change across their account profile and offers to provide documentation.",
+      "difficulty": "easy",
+      "notes": "Profile update with legal name change."
+    },
+    {
+      "id": "TC-047",
+      "input_email": "I think someone has accessed my account without permission. I noticed logins from an IP address in a country I've never been to (Nigeria) and there are changes to my settings that I didn't make. I've already changed my password but I want you to review the access logs and secure my account.",
+      "expected_category": "account",
+      "expected_summary": "Customer reports unauthorized account access from a foreign IP address and requests a security audit of access logs.",
+      "difficulty": "medium",
+      "notes": "Security breach / unauthorized access report."
+    },
+    {
+      "id": "TC-048",
+      "input_email": "We need to add 15 new team members to our organization and assign them to different permission groups. Here's the breakdown: 5 users as Editors, 7 as Viewers, and 3 as Admins. Can you do a bulk invite or should I add them one by one?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests bulk addition of 15 team members with varying permission levels to their organization.",
+      "difficulty": "easy",
+      "notes": "User management — bulk invite."
+    },
+    {
+      "id": "TC-049",
+      "input_email": "A former employee (jane.doe@ourcompany.com) still has access to our workspace. She left three months ago. Please immediately revoke her access and let me know what data she's accessed since her departure. This is a compliance concern for us.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests immediate access revocation for a former employee and an audit of their recent data access for compliance.",
+      "difficulty": "medium",
+      "notes": "Access revocation with audit request."
+    },
+    {
+      "id": "TC-050",
+      "input_email": "I'm trying to connect my Google Workspace account for single sign-on but I keep getting an 'OAuth redirect URI mismatch' error. I've added the callback URL you listed in your docs to our Google Cloud Console authorized redirect URIs but it's still not working.",
+      "expected_category": "account",
+      "expected_summary": "Customer reports OAuth redirect URI mismatch errors when attempting to configure Google Workspace SSO.",
+      "difficulty": "hard",
+      "notes": "Overlap between account (SSO setup) and technical (OAuth error). Primary intent is account setup."
+    },
+    {
+      "id": "TC-051",
+      "input_email": "We're restructuring our departments and need to merge two workspaces into one. Workspace A has 50 projects and Workspace B has 30 projects. We want all 80 projects under a single workspace without losing any data or permissions. How should we approach this?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests guidance on merging two workspaces containing 80 total projects while preserving data and permissions.",
+      "difficulty": "medium",
+      "notes": "Workspace restructuring."
+    },
+    {
+      "id": "TC-052",
+      "input_email": "Can you enable the audit log feature for our organization? Our compliance team requires that we have full audit trails of all user actions for SOC 2 certification. We need at least 12 months of log retention.",
+      "expected_category": "account",
+      "expected_summary": "Customer requests audit log activation with 12-month retention for SOC 2 compliance requirements.",
+      "difficulty": "easy",
+      "notes": "Enterprise feature enablement — account management."
+    },
+    {
+      "id": "TC-053",
+      "input_email": "My manager created my account with a personal email (john.doe.personal@gmail.com) but I need to switch it to my work email (john.doe@company.com). The work email isn't already associated with any account. Can this be done without losing my projects and settings?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests changing their primary email from personal to work email without losing existing projects and settings.",
+      "difficulty": "easy",
+      "notes": "Email migration on account."
+    },
+    {
+      "id": "TC-054",
+      "input_email": "I need a data export of all our organization's data for internal backup purposes. This includes all projects, user data, settings, and conversation history. What format will the export be in and how long does it typically take?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests a full organization data export for backup and inquires about the format and timeline.",
+      "difficulty": "easy",
+      "notes": "Data export request."
+    },
+    {
+      "id": "TC-055",
+      "input_email": "The custom role I created called 'Project Lead' isn't working correctly. Users assigned this role should be able to create projects and manage team members but they can't see the 'New Project' button. The role has the 'project.create' and 'team.manage' permissions checked.",
+      "expected_category": "account",
+      "expected_summary": "Customer reports that their custom 'Project Lead' role isn't granting expected permissions despite correct configuration.",
+      "difficulty": "medium",
+      "notes": "RBAC/permission issue — could be technical but primary intent is account/role management."
+    },
+    {
+      "id": "TC-056",
+      "input_email": "We have a regulatory requirement to restrict our account so that data is only stored in EU data centers. Can you confirm which region our data is currently stored in and if we can migrate to EU-only hosting?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests confirmation of their current data storage region and asks about migrating to EU-only data centers for regulatory compliance.",
+      "difficulty": "medium",
+      "notes": "Data residency/compliance — account-level configuration."
+    },
+    {
+      "id": "TC-057",
+      "input_email": "I accidentally deleted a shared workspace with about 200 files in it. Is there any way to recover it? I deleted it about 2 hours ago. We don't have backups on our end because we assumed your platform had a trash/recovery feature.",
+      "expected_category": "account",
+      "expected_summary": "Customer urgently requests recovery of an accidentally deleted shared workspace containing 200 files.",
+      "difficulty": "medium",
+      "notes": "Data recovery — could be technical but it's really about account/workspace management."
+    },
+    {
+      "id": "TC-058",
+      "input_email": "How do I set up IP whitelisting for our organization? We want to restrict access so that our platform can only be accessed from our office network (IP range: 203.0.113.0/24) and our VPN (198.51.100.0/24).",
+      "expected_category": "account",
+      "expected_summary": "Customer requests configuration of IP whitelisting to restrict organization access to specific office and VPN IP ranges.",
+      "difficulty": "easy",
+      "notes": "Security configuration — account management."
+    },
+    {
+      "id": "TC-059",
+      "input_email": "i cant login!!!! i type my password and it says wrong but its not wrong i use the same password for everything. maybe u guys changed something?? i need to get in NOW i have a presentation in 1 hour please help",
+      "expected_category": "account",
+      "expected_summary": "Customer urgently reports being unable to log in despite using what they believe is the correct password, with time pressure from an upcoming presentation.",
+      "difficulty": "hard",
+      "notes": "Informal, urgent, emotionally charged — tests handling of stressed customer language."
+    },
+    {
+      "id": "TC-060",
+      "input_email": "We recently completed our annual security audit and the auditors flagged that several dormant accounts (no login in 90+ days) still have active access. Can you provide a report of inactive users in our organization and the ability to bulk-deactivate them?",
+      "expected_category": "account",
+      "expected_summary": "Customer requests a report of inactive user accounts and bulk deactivation capability following a security audit finding.",
+      "difficulty": "easy",
+      "notes": "Security/compliance account management."
+    },
+    {
+      "id": "TC-061",
+      "input_email": "I love your product! We've been using it for our entire marketing team and it has completely transformed our workflow. The template library is especially fantastic. Just wanted to send some positive vibes your way. Keep building great things!",
+      "expected_category": "general",
+      "expected_summary": "Customer shares enthusiastic positive feedback about the product's impact on their marketing team's workflow.",
+      "difficulty": "easy",
+      "notes": "Pure positive feedback."
+    },
+    {
+      "id": "TC-062",
+      "input_email": "It would be really useful if you could add a Gantt chart view to the project management module. We currently export data to Microsoft Project for this and it's a pain. If you had a native Gantt chart, we could consolidate our tooling significantly.",
+      "expected_category": "general",
+      "expected_summary": "Customer requests a native Gantt chart feature in the project management module to eliminate their dependency on Microsoft Project.",
+      "difficulty": "easy",
+      "notes": "Feature request."
+    },
+    {
+      "id": "TC-063",
+      "input_email": "Hi, I'm a journalist with TechCrunch writing a piece on emerging SaaS tools for remote teams. I'd love to schedule an interview with your CEO or head of product to discuss your vision and growth trajectory. We're targeting publication next week.",
+      "expected_category": "general",
+      "expected_summary": "A TechCrunch journalist requests an interview with company leadership for an article about SaaS tools for remote teams.",
+      "difficulty": "easy",
+      "notes": "Media/press inquiry."
+    },
+    {
+      "id": "TC-064",
+      "input_email": "We're a SaaS company ourselves and think there could be a great partnership opportunity between our platforms. We have 50K+ active users who could benefit from your document management features, and you could offer our analytics capabilities to your users. Would love to set up a call.",
+      "expected_category": "general",
+      "expected_summary": "A SaaS company proposes a strategic partnership to cross-integrate their analytics platform with the document management features.",
+      "difficulty": "easy",
+      "notes": "Partnership inquiry."
+    },
+    {
+      "id": "TC-065",
+      "input_email": "Do you have a public API roadmap or changelog? I'm evaluating your platform for a large enterprise deployment and one of our requirements is understanding your release cadence and upcoming breaking changes so we can plan our integration maintenance windows.",
+      "expected_category": "general",
+      "expected_summary": "Customer evaluating the platform for enterprise deployment requests access to an API roadmap and changelog for integration planning.",
+      "difficulty": "medium",
+      "notes": "Pre-sales evaluation inquiry — doesn't fit other categories cleanly."
+    },
+    {
+      "id": "TC-066",
+      "input_email": "I'm a CS student working on my senior thesis about AI-powered productivity tools. Would it be possible to get access to any published research, white papers, or case studies about your platform's AI features? I'd be happy to share my findings with your team.",
+      "expected_category": "general",
+      "expected_summary": "A computer science student requests research materials and case studies about the platform's AI features for their senior thesis.",
+      "difficulty": "easy",
+      "notes": "Academic inquiry."
+    },
+    {
+      "id": "TC-067",
+      "input_email": "Your onboarding experience could use some work. It took me 3 days to figure out how to create my first project because the documentation is scattered and the UI isn't intuitive. I almost gave up. Suggestion: add an interactive tutorial for first-time users.",
+      "expected_category": "general",
+      "expected_summary": "Customer provides critical feedback about the confusing onboarding experience and suggests adding an interactive tutorial.",
+      "difficulty": "medium",
+      "notes": "Constructive criticism with feature suggestion — neither support request nor bug report."
+    },
+    {
+      "id": "TC-068",
+      "input_email": "Are you hiring? I'm a senior full-stack engineer with 8 years of experience in React and Node.js. I've been a power user of your platform for 2 years and would love to contribute to building it. Here's my LinkedIn: linkedin.com/in/example. Happy to send my resume.",
+      "expected_category": "general",
+      "expected_summary": "A senior engineer and longtime user inquires about job opportunities and expresses interest in joining the team.",
+      "difficulty": "easy",
+      "notes": "Job inquiry."
+    },
+    {
+      "id": "TC-069",
+      "input_email": "We're organizing a tech conference in San Francisco (DevConnect 2026, October 15-17) and would like to invite your team to sponsor a booth or give a talk. We expect 2,000+ attendees, mostly engineering leaders and CTOs. Sponsorship decks available on request.",
+      "expected_category": "general",
+      "expected_summary": "Conference organizer invites the company to sponsor or speak at a 2,000+ attendee tech conference in San Francisco.",
+      "difficulty": "easy",
+      "notes": "Event/sponsorship inquiry."
+    },
+    {
+      "id": "TC-070",
+      "input_email": "Not sure if this is the right place to ask, but do you offer any training or certification programs? Our company is willing to pay for official training for our team of 20 so they can get the most out of the platform.",
+      "expected_category": "general",
+      "expected_summary": "Customer inquires about paid training or certification programs for their 20-person team.",
+      "difficulty": "easy",
+      "notes": "Training inquiry."
+    },
+    {
+      "id": "TC-071",
+      "input_email": "I compared your platform with Competitor X and Competitor Y. Honestly, your feature set is better but your pricing is 40% higher. If you could offer more competitive pricing, I think you'd capture a much larger market share. Just some friendly market feedback.",
+      "expected_category": "general",
+      "expected_summary": "Customer provides competitive market feedback noting the product's strong features but comparatively higher pricing.",
+      "difficulty": "medium",
+      "notes": "Market feedback — touches on pricing but it's general competitive feedback, not a billing issue."
+    },
+    {
+      "id": "TC-072",
+      "input_email": "Hello, our law firm represents a client who believes your platform may contain evidence relevant to ongoing litigation (Case No. 2026-CV-1234). We are requesting that you preserve all data associated with account user@example.com pursuant to a litigation hold. Formal subpoena to follow.",
+      "expected_category": "general",
+      "expected_summary": "A law firm requests a litigation hold on a specific user account's data pending a formal subpoena.",
+      "difficulty": "hard",
+      "notes": "Legal notice — unusual category, definitely not billing/tech/account."
+    },
+    {
+      "id": "TC-073",
+      "input_email": "Is your platform SOC 2 Type II certified? We're in the procurement evaluation phase and our InfoSec team requires evidence of SOC 2 compliance before we can approve any new vendor. Can you share your latest audit report or a summary of your security certifications?",
+      "expected_category": "general",
+      "expected_summary": "Customer requests SOC 2 Type II certification evidence as part of their vendor procurement security evaluation.",
+      "difficulty": "medium",
+      "notes": "Security compliance inquiry during evaluation — general/pre-sales."
+    },
+    {
+      "id": "TC-074",
+      "input_email": "I accidentally sent a support ticket earlier today about a billing issue (Ticket #4521) but I figured it out on my own. The charge was for the add-on I forgot I activated. You can close that ticket. Sorry for the noise!",
+      "expected_category": "general",
+      "expected_summary": "Customer requests closure of a previously submitted billing ticket after resolving the issue independently.",
+      "difficulty": "hard",
+      "notes": "Mentions billing but the actual intent is just to close a previous ticket — tests category vs. intent distinction."
+    },
+    {
+      "id": "TC-075",
+      "input_email": "Can you add dark mode? Please? PLEASE? Every other app I use has dark mode. My eyes are literally burning at 2 AM because your app is a flashbang. I'm begging you. Dark. Mode. Thank you. Sincerely, a nocturnal developer.",
+      "expected_category": "general",
+      "expected_summary": "Customer humorously but emphatically requests the addition of a dark mode feature to reduce eye strain during late-night usage.",
+      "difficulty": "medium",
+      "notes": "Humorous/emphatic feature request — tests tone interpretation."
+    },
+    {
+      "id": "TC-076",
+      "input_email": "Hey, is your service down right now? I can't access anything. I checked DownDetector and there are a bunch of reports from other users too. Your status page still says 'All Systems Operational' which seems wrong.",
+      "expected_category": "technical",
+      "expected_summary": "Customer reports a potential service outage corroborated by DownDetector reports, noting the status page hasn't been updated.",
+      "difficulty": "medium",
+      "notes": "Outage report — could be general inquiry but it's a technical issue."
+    },
+    {
+      "id": "TC-077",
+      "input_email": "I want to cancel my account. Your product is terrible, the support is slow, and I've had nothing but problems since day one. I also want a full refund for the 3 months I've been paying. Don't try to talk me out of it.",
+      "expected_category": "account",
+      "expected_summary": "Frustrated customer demands account cancellation with a full 3-month refund, citing ongoing product and support issues.",
+      "difficulty": "hard",
+      "notes": "Multi-category: account cancellation + billing refund + general complaint. Primary intent is account cancellation."
+    },
+    {
+      "id": "TC-078",
+      "input_email": "Our contract is up for renewal next month and before we commit, I need to understand your data handling practices. Specifically: where is data stored, who has access, what encryption is used at rest and in transit, and what happens to our data if we cancel? Can you point me to your DPA?",
+      "expected_category": "general",
+      "expected_summary": "Customer requests detailed data handling and privacy documentation including DPA before their contract renewal.",
+      "difficulty": "hard",
+      "notes": "Touches billing (renewal), account (data), and general (inquiry). Primary intent is pre-renewal evaluation."
+    },
+    {
+      "id": "TC-079",
+      "input_email": "Sure, the product is 'fine' I guess. Works most of the time. When it actually decides to load. Which is apparently a lot to ask these days. Five stars, would recommend to my worst enemy. But seriously, fix the loading times.",
+      "expected_category": "technical",
+      "expected_summary": "Customer uses sarcasm to express dissatisfaction with product loading times while acknowledging basic functionality works.",
+      "difficulty": "hard",
+      "notes": "Sarcastic tone — tests whether the model identifies the actual technical complaint (loading times) beneath the sarcasm."
+    },
+    {
+      "id": "TC-080",
+      "input_email": "Dear Sir/Madam, I am the Prince of a faraway land and I wish to deposit $10,000,000 into your platform. Please send me your banking details and social security number and I will arrange the transfer immediately. This is totally legitimate and not suspicious at all. God bless.",
+      "expected_category": "general",
+      "expected_summary": "Email appears to be a spam or phishing attempt using a classic advance-fee scam format.",
+      "difficulty": "hard",
+      "notes": "Obvious spam/scam email — tests classifier's handling of adversarial/irrelevant input."
+    }
+  ]
+}

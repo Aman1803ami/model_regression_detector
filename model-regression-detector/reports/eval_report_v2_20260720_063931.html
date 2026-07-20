@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eval Report: v2 | CRITICAL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #ef4444;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .header .meta {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+        .status-badge {
+            display: inline-block;
+            background: #ef444422;
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+        }
+        .scorecard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .metric-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+        .metric-delta {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .delta-positive { color: #22c55e; }
+        .delta-negative { color: #ef4444; }
+        .delta-neutral { color: #94a3b8; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        th {
+            text-align: left;
+            padding: 0.75rem;
+            background: #0f172a;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #334155;
+        }
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #1e293b;
+            vertical-align: top;
+        }
+        tr:hover td {
+            background: #334155;
+        }
+        .category-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #334155;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .pass { color: #22c55e; }
+        .fail { color: #ef4444; }
+        .warn { color: #eab308; }
+        .diff-old { background: #7f1d1d33; color: #fca5a5; }
+        .diff-new { background: #14532d33; color: #86efac; }
+        .alert-box {
+            background: #7f1d1d22;
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .trend-chart {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+        .collapsible::after {
+            content: ' ▸';
+            font-size: 0.875rem;
+        }
+        .collapsible.open::after {
+            content: ' ▾';
+        }
+        .collapsible-content {
+            display: none;
+        }
+        .collapsible-content.show {
+            display: block;
+        }
+        .email-preview {
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            padding: 0.5rem;
+            background: #0f172a;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+    <div class="header">
+        <div class="status-badge">🔴 CRITICAL</div>
+        <h1>Model Regression Report — v2</h1>
+        <div class="meta">
+            Run ID: 2038df0a5997 &nbsp;|&nbsp;
+            Model: gemini-3.1-flash-lite &nbsp;|&nbsp;
+            Prompt: v2 &nbsp;|&nbsp;
+            Timestamp: 2026-07-20 06:39:31 UTC &nbsp;|&nbsp;
+            Cases: 80
+        </div>
+    </div>
+        
+    <div class="card">
+        <h2>📊 Scorecard</h2>
+        <div class="scorecard-grid">
+            <div class="metric-card">
+                <div class="metric-value">78.8%</div>
+                <div class="metric-label">Accuracy</div>
+                <div class="metric-delta delta-negative">-13.8%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3.04</div>
+                <div class="metric-label">Avg Summary Score (1-5)</div>
+                <div class="metric-delta delta-negative">-0.4</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">817ms</div>
+                <div class="metric-label">Avg Latency</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">9,893</div>
+                <div class="metric-label">Total Tokens</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">63/80</div>
+                <div class="metric-label">Cases Passed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-label">Errors</div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="card">
+        <h2>📂 Per-Category Breakdown</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Correct/Total</th>
+                    <th>Accuracy</th>
+                    <th>Avg Summary Score</th>
+                    <th>Avg Latency</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><strong>account</strong></td>
+            <td>14/21</td>
+            <td>
+                66.7%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 66.66666666666666%; background: #eab308;"></div>
+                </div>
+            </td>
+            <td>3.29</td>
+            <td>824ms</td>
+        </tr>
+        <tr>
+            <td><strong>billing</strong></td>
+            <td>17/20</td>
+            <td>
+                85.0%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 85.0%; background: #22c55e;"></div>
+                </div>
+            </td>
+            <td>2.90</td>
+            <td>810ms</td>
+        </tr>
+        <tr>
+            <td><strong>general</strong></td>
+            <td>16/17</td>
+            <td>
+                94.1%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 94.11764705882352%; background: #22c55e;"></div>
+                </div>
+            </td>
+            <td>3.12</td>
+            <td>826ms</td>
+        </tr>
+        <tr>
+            <td><strong>technical</strong></td>
+            <td>16/22</td>
+            <td>
+                72.7%
+                <div class="category-bar">
+                    <div class="category-bar-fill" style="width: 72.72727272727273%; background: #eab308;"></div>
+                </div>
+            </td>
+            <td>2.86</td>
+            <td>809ms</td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="card">
+        <h2>📈 Accuracy Trend (Last 3 Runs)</h2>
+        
+    <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+        <!-- Grid lines -->
+        <line x1="40" y1="40" x2="40" y2="160" stroke="#334155" stroke-width="1"/>
+        <line x1="40" y1="160" x2="760" y2="160" stroke="#334155" stroke-width="1"/>
+
+        <!-- Y axis labels -->
+        <text x="35" y="44" text-anchor="end" fill="#94a3b8" font-size="11">98%</text>
+        <text x="35" y="164" text-anchor="end" fill="#94a3b8" font-size="11">74%</text>
+
+        <!-- Accuracy line -->
+        <polyline points="40,65 400,116 760,135" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linejoin="round"/>
+
+        <!-- Data points -->
+        <circle cx="40" cy="65" r="4" fill="#3b82f6"/><circle cx="400" cy="116" r="4" fill="#3b82f6"/><circle cx="760" cy="135" r="4" fill="#3b82f6"/>
+    </svg>
+    </div>
+        
+    <div class="card">
+        <h2>⬇️ Regressions (14)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Case</th>
+                    <th>Expected</th>
+                    <th>Old Prediction</th>
+                    <th>New Prediction</th>
+                    <th>Email</th>
+                    <th>Summary Comparison</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><strong>TC-015</strong></td>
+            <td>billing</td>
+            <td class="diff-old">billing</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">hiii so like i got charged?? for something i def did not buy lol. my bank shows $9.99 from u guys on june 5th but i thought i canceled ages ago??? can u plz check bc im broke rn thx</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is disputing an unexpected charge of $9.99 and requesting a refund, believing their subscription was previously canceled.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-016</strong></td>
+            <td>billing</td>
+            <td class="diff-old">billing</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">Refund.</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting a refund for their purchase.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-017</strong></td>
+            <td>billing</td>
+            <td class="diff-old">billing</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">I want to cancel my subscription effective immediately. Don&#39;t charge me for next month. I also want a refund for the remaining days of this month since I won&#39;t be using the service. Please confirm in </div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting an immediate subscription cancellation, a refund for the remaining days of the current month, and confirmation that recurring payments have been stopped.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-026</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">Whenever I try to export data as CSV, the file is missing the last column (Notes) and all date fields are formatted as Unix timestamps instead of human-readable dates. This broke our import process in</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports that the CSV export feature is missing data columns and incorrectly formatting date fields, causing issues with their internal analytics import process.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-027</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">I&#39;m trying to integrate your webhook system with our Slack workspace but the webhooks are firing twice for every event. I checked our endpoint logs and each event ID appears exactly twice, about 200ms</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports that webhooks are firing twice for every event, causing duplicate data processing.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-028</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">After enabling two-factor authentication, I can no longer use the mobile app. The desktop version works fine with 2FA but the mobile app just shows &#39;Authentication Error&#39; after I enter the code from m</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports that the mobile app displays an authentication error after enabling two-factor authentication, despite the desktop version functioning correctly.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-037</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">Memory usage of your desktop application keeps climbing over time. After about 4 hours of use, it&#39;s consuming 3.2 GB of RAM which makes my entire system sluggish. Task Manager shows it&#39;s the main proc</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports a memory leak in the desktop application that causes high RAM usage and system performance degradation over time.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-038</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">When I paste formatted text from Google Docs into your rich text editor, all the formatting is stripped out. Bold, italics, bullet lists, headers — everything becomes plain text. This is really annoyi</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports that the rich text editor fails to preserve formatting when pasting content from Google Docs.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-039</strong></td>
+            <td>technical</td>
+            <td class="diff-old">technical</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">The auto-save feature seems to be silently failing. I worked on a document for 2 hours yesterday and when I came back today, all my changes were gone. The version history shows the last save was from </div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer reports that the auto-save feature is failing to save document changes, resulting in data loss.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-049</strong></td>
+            <td>account</td>
+            <td class="diff-old">account</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">A former employee (jane.doe@ourcompany.com) still has access to our workspace. She left three months ago. Please immediately revoke her access and let me know what data she&#39;s accessed since her depart</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting the immediate removal of a former employee&#39;s access to the workspace due to security and compliance concerns.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-057</strong></td>
+            <td>account</td>
+            <td class="diff-old">account</td>
+            <td class="diff-new">technical</td>
+            <td>
+                <div class="email-preview">I accidentally deleted a shared workspace with about 200 files in it. Is there any way to recover it? I deleted it about 2 hours ago. We don&#39;t have backups on our end because we assumed your platform </div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting the recovery of a deleted shared workspace containing important files.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: The user is requesting assistance with recovering a deleted shared workspace containing 200 files.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-058</strong></td>
+            <td>account</td>
+            <td class="diff-old">account</td>
+            <td class="diff-new">technical</td>
+            <td>
+                <div class="email-preview">How do I set up IP whitelisting for our organization? We want to restrict access so that our platform can only be accessed from our office network (IP range: 203.0.113.0/24) and our VPN (198.51.100.0/</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting instructions on how to configure IP whitelisting to restrict account access to specific network ranges.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: The customer is requesting instructions on how to configure IP whitelisting for their organization to restrict platform access to specific network ranges.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-059</strong></td>
+            <td>account</td>
+            <td class="diff-old">account</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">i cant login!!!! i type my password and it says wrong but its not wrong i use the same password for everything. maybe u guys changed something?? i need to get in NOW i have a presentation in 1 hour pl</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is unable to log into their account due to a password error and requires urgent assistance before a presentation.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>TC-060</strong></td>
+            <td>account</td>
+            <td class="diff-old">account</td>
+            <td class="diff-new">general</td>
+            <td>
+                <div class="email-preview">We recently completed our annual security audit and the auditors flagged that several dormant accounts (no login in 90+ days) still have active access. Can you provide a report of inactive users in ou</div>
+            </td>
+            <td>
+                <div class="diff-old" style="padding: 4px; border-radius: 4px; margin-bottom: 4px; font-size: 0.8rem;">
+                    OLD: Customer is requesting a report of inactive users and a bulk-deactivation feature to address security audit findings regarding dormant accounts.
+                </div>
+                <div class="diff-new" style="padding: 4px; border-radius: 4px; font-size: 0.8rem;">
+                    NEW: Classification failed: 429 RESOURCE_EXHAUSTED. {&#39;error&#39;: {&#39;code&#39;: 429, &#39;message&#39;: &#39;You exceeded your current quota, please check your plan and billing details. For more information on this error, head
+                </div>
+            </td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="card">
+        <h2>⬆️ Improvements (3)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Case</th>
+                    <th>Expected</th>
+                    <th>Old Prediction</th>
+                    <th>New Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td><strong>TC-052</strong></td>
+            <td>account</td>
+            <td class="diff-old">general</td>
+            <td class="diff-new">account</td>
+        </tr>
+        <tr>
+            <td><strong>TC-054</strong></td>
+            <td>account</td>
+            <td class="diff-old">general</td>
+            <td class="diff-new">account</td>
+        </tr>
+        <tr>
+            <td><strong>TC-077</strong></td>
+            <td>account</td>
+            <td class="diff-old">billing</td>
+            <td class="diff-new">account</td>
+        </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="card">
+        <h2 class="collapsible">📋 All Results (80 cases)</h2>
+        <div class="collapsible-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Expected</th>
+                        <th>Predicted</th>
+                        <th>Summary Score</th>
+                        <th>Latency</th>
+                        <th>Difficulty</th>
+                        <th>Error</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>TC-001</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>741ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-002</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>886ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-003</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>809ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-004</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>1.0</td>
+            <td>787ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-005</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>5.0</td>
+            <td>878ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-006</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>1018ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-007</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>770ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-008</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>701ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-009</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>894ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-010</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>798ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-011</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>5.0</td>
+            <td>793ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-012</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>766ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-013</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>2.0</td>
+            <td>883ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-014</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>765ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-015</td>
+            <td><span class="fail">✗</span></td>
+            <td>billing</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-016</td>
+            <td><span class="fail">✗</span></td>
+            <td>billing</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-017</td>
+            <td><span class="fail">✗</span></td>
+            <td>billing</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-018</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>3.0</td>
+            <td>785ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-019</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>790ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-020</td>
+            <td><span class="pass">✓</span></td>
+            <td>billing</td>
+            <td class="pass">billing</td>
+            <td>4.0</td>
+            <td>715ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-021</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>797ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-022</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>811ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-023</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>806ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-024</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>798ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-025</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>793ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-026</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-027</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-028</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-029</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>733ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-030</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>790ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-031</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>807ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-032</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>898ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-033</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>904ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-034</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>4.0</td>
+            <td>821ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-035</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>784ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-036</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>794ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-037</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-038</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-039</td>
+            <td><span class="fail">✗</span></td>
+            <td>technical</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-040</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>5.0</td>
+            <td>838ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-041</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>5.0</td>
+            <td>691ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-042</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>807ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-043</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>822ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-044</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>698ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-045</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>810ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-046</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>797ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-047</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>5.0</td>
+            <td>805ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-048</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>784ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-049</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-050</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-051</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>716ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-052</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>5.0</td>
+            <td>805ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-053</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>875ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-054</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>3.0</td>
+            <td>903ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-055</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">technical</td>
+            <td>4.0</td>
+            <td>813ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-056</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>4.0</td>
+            <td>694ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-057</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">technical</td>
+            <td>4.0</td>
+            <td>793ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-058</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">technical</td>
+            <td>4.0</td>
+            <td>1497ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-059</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-060</td>
+            <td><span class="fail">✗</span></td>
+            <td>account</td>
+            <td class="fail">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-061</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-062</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>852ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-063</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>788ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-064</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>5.0</td>
+            <td>791ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-065</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>783ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-066</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>784ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-067</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>988ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-068</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>769ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-069</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>785ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-070</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>825ms</td>
+            <td>easy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-071</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-072</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>1.0</td>
+            <td>0ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-073</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>4.0</td>
+            <td>730ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-074</td>
+            <td><span class="fail">✗</span></td>
+            <td>general</td>
+            <td class="fail">billing</td>
+            <td>4.0</td>
+            <td>879ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-075</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>795ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-076</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>3.0</td>
+            <td>777ms</td>
+            <td>medium</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-077</td>
+            <td><span class="pass">✓</span></td>
+            <td>account</td>
+            <td class="pass">account</td>
+            <td>2.0</td>
+            <td>691ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-078</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>3.0</td>
+            <td>995ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-079</td>
+            <td><span class="pass">✓</span></td>
+            <td>technical</td>
+            <td class="pass">technical</td>
+            <td>2.0</td>
+            <td>793ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>TC-080</td>
+            <td><span class="pass">✓</span></td>
+            <td>general</td>
+            <td class="pass">general</td>
+            <td>1.0</td>
+            <td>797ms</td>
+            <td>hard</td>
+            <td></td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.querySelectorAll('.collapsible').forEach(el => {
+            el.addEventListener('click', () => {
+                el.classList.toggle('open');
+                const content = el.nextElementSibling;
+                content.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

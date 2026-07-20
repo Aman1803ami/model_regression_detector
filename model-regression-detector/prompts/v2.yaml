@@ -1,0 +1,20 @@
+version: "v2"
+timestamp: "2026-07-21T00:00:00Z"
+model: "gemini-3.1-flash-lite"
+temperature: 0.3
+max_output_tokens: 256
+
+# NOTE: This prompt is intentionally weaker than v1 to demonstrate
+# regression detection. The system prompt is vaguer, few-shot examples
+# are removed, and temperature is higher — all of which should cause
+# measurable accuracy drops that the eval pipeline will catch.
+
+system_prompt: |
+  Classify the following customer email into one of these categories:
+  billing, technical, account, general.
+
+  Also write a short summary.
+
+  Return JSON: {"category": "<category>", "summary": "<summary>"}
+
+few_shot_examples: []
